@@ -1,31 +1,39 @@
 document.querySelectorAll('.details-js').forEach(details => {
   const summary = details.querySelector('summary');
-  const content = details.querySelector('.content');
+  const contents = details.querySelectorAll('[class^="content"]');
+
+  contents.forEach(content => {
+    content.style.maxHeight = details.open ? content.scrollHeight + 'px' : '0';
+  });
 
   summary.addEventListener('click', (e) => {
     e.preventDefault();
 
     if (details.open) {
-      content.style.maxHeight = content.scrollHeight + 'px';
-      setTimeout(() => {
+      contents.forEach(content => {
         content.style.maxHeight = '0';
-      }, 10);
-      setTimeout(() => details.removeAttribute('open'), 310);
+      });
+      setTimeout(() => {
+        details.removeAttribute('open');
+      }, 300);
       return;
     }
 
     document.querySelectorAll('.details-js').forEach(otherDetails => {
       if (otherDetails !== details && otherDetails.open) {
-        const otherContent = otherDetails.querySelector('.content');
-        otherContent.style.maxHeight = otherContent.scrollHeight + 'px';
-        setTimeout(() => {
+        const otherContents = otherDetails.querySelectorAll('[class^="content"]');
+        otherContents.forEach(otherContent => {
           otherContent.style.maxHeight = '0';
-        }, 10);
-        setTimeout(() => otherDetails.removeAttribute('open'), 310);
+        });
+        setTimeout(() => {
+          otherDetails.removeAttribute('open');
+        }, 300);
       }
     });
 
     details.setAttribute('open', '');
-    content.style.maxHeight = content.scrollHeight + 'px';
+    contents.forEach(content => {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    });
   });
 });

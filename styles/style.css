@@ -136,6 +136,10 @@ body
   margin: 2%;
   margin-top: 0;
   padding: 2%;
+    @media (max-width: 412px) 
+  {
+    margin-top: 5%;
+  }
 }
 
 .details-js summary {
@@ -188,7 +192,11 @@ body
   display: none; 
 }
 
-.details-js .content {
+.details-js .content1, 
+.details-js .content2,
+.details-js .content3,
+.details-js .content4,
+.details-js .content5 {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
@@ -237,9 +245,9 @@ body
 .gallery img {
   flex: 1;
   width: 0;
-  height: auto; /* Автоматическая высота */
-  object-fit: contain; /* Показывает изображение целиком */
-  min-width: 0; /* Фиксит баг с переполнением в flex-контейнере */
+  height: auto; 
+  object-fit: contain; 
+  min-width: 0;
 }
 
 .gallery img:hover {
@@ -268,7 +276,7 @@ body
   font-family: 'Arial';
   font-size: 25px;
   padding-bottom: 25%;
-    @media (max-width: 414px) 
+  @media (max-width: 414px) 
   {
     padding-left: 5%;
   }
@@ -282,4 +290,31 @@ body
   -webkit-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 4px 5px 0px rgba(0, 0, 0, 0.2);
+}
+.content1, .content2, .content3, .content4, .content5
+{
+  @media (max-width: 414px) 
+  {
+    padding: 1%;
+    padding-left: 4%;
+  }
+}
+.content1, .content2, .content3, .content4, .content5
+{
+  margin-top: 1%;
+}
+a
+{
+  text-decoration: none;
+  color: black;
+}
+a::before
+{
+  content:  "• ";
+}
+[class^="content"] {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease; 
+  will-change: max-height; 
 }
